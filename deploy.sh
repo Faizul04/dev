@@ -1,4 +1,4 @@
-#!/bin/bash
+t#!/bin/bash
 
 if [ "$GIT_BRANCH" == "origin/main" ]; then
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
