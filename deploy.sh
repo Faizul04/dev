@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sh <<'EOF'
 if [ "$GIT_BRANCH" == "origin/main" ]; then
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
         docker tag reactapp:latest reactapp:v1
@@ -9,4 +8,3 @@ if [ "$GIT_BRANCH" == "origin/main" ]; then
 else
     docker push faizul04/dev:latest  
 fi
-EOF
