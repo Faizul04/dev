@@ -3,5 +3,5 @@ services:
   web:
       build: .
       ports:
-        - 80:80
+        - 9000:8000
       
