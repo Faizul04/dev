@@ -1,7 +1,8 @@
 version: '3'
 services:
   web:
-      build: .
-      ports:
-        - 8040:8000
-      
+    build: .
+    ports:
+      - "8040:8000"
+    command: ["npm", "start"]
+    working_dir: /app
