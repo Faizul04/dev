@@ -4,5 +4,5 @@ COPY package*.json  ./
 COPY . .
 RUN npm run build
 EXPOSE 8000
-CMD ["tail", "-f", "/dev/null"]
+CMD ["npm", "start"]
 
