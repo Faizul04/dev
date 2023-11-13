@@ -3,6 +3,6 @@ services:
   web:
     build: .
     ports:
-      - "8060:8000"
+      - "8070:8000"
     command: ["npm", "start"]
     working_dir: /app
