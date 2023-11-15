@@ -1,12 +1,13 @@
 #!/bin/bash
 
-sh <<'EOF'
-if [ "$GIT_BRANCH" == "origin/main" ]; then
-        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
-        docker tag reactapp:latest reactapp:v1
-        docker push faizul04/prod:latest
-    }
+if [[ -n "$GIT_BRANCH" && "$GIT_BRANCH" == "origin/main" ]]; then
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    docker tag capstoneimg:latest faizul04/prod:latest
+    docker push faizul04/prod:latest
+    docker logout
 else
-    docker push faizul04/dev:latest  
+    docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    docker tag capstoneimg:latest faizul04/dev:latest
+    docker push faizul04/dev:latest
+    docker logout
 fi
-EOF
