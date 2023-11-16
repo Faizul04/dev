@@ -4,7 +4,9 @@ DEV_IMAGE_NAME="faizul04/dev/capstoneimg:latest"
 PROD_IMAGE_NAME="faizul04/prod/capstoneimg:latest"
 
 docker build -t capstoneimg:latest .
-docker run -itd -p 4000:8000 capstoneimg
+docker rm -f capstone_container || true
+docker run -itd --name capstone_container capstoneimg
 docker tag capstoneimg:latest $DEV_IMAGE_NAME
 docker tag capstoneimg:latest $PROD_IMAGE_NAME
+
 
