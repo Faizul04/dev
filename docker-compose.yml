@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     image: capstoneimg:latest
     ports:
-      - "2000:8000"
+      - "4000:8000"
     command: ["npm", "start"]
     working_dir: /app
 
