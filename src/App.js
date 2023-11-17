@@ -31,25 +31,16 @@ class App extends Component {
     if (error) {
       return <div>Error: {error}</div>;
     } else {
-      return (
-        <div className="App">
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
+       return (
+    <div>
+      <h1>React App</h1>
+      {/* Include the SVG code directly */}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3">
+        <g fill="#61DAFB">
+          {/* ... (your SVG path, circle, etc.) */}
+        </g>
+      </svg>
+    </div>
       );
     }
   }
