@@ -4,7 +4,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps{
-            checkout 'scmGit'(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Faizul04/Demo.git']])
+            checkout 'scmGit' (branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Faizul04/dev.git']])
+        }
+    }
+    
+    stage('Install Dependencies') {
+        steps {
+            script {
+                sh "npm ci"
+            }
         }
     }
     
@@ -12,24 +20,30 @@ pipeline {
             steps {
                  script {
                      sh "chmod +x build.sh"
-                     sh "./build.sh"
-                     sh "docker run -d -p 8000:80 reactapp"
+                     sh "bash ./build.sh"
                  }
             }
-            }
+        }
+        
+        stage('Containerizing') {
+    steps {
+        script {
+            sh "docker-compose down"
+            sh "docker-compose up -d"
+        }
+    }
+}
+
             
         stage('Push Image') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'Docker-registry', variable: 'DOCKERKEY')]) {
-                        sh "echo $DOCKERKEY"
-                        sh "docker tag 7aa7bd3df993 faizul04/reactapp:latest"
-                        sh "docker login -u faizulfaity3@gmail.com -p Devops@7890 docker.io"
-                        sh "docker push faizul04/reactapp:latest"
+                   withCredentials([usernamePassword(credentialsId: 'Docker_credential', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                        sh "chmod +x deploy.sh"
+                        sh "bash ./deploy.sh"
             }
         }
         }
 }
 }
 }
-   
