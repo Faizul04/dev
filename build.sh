@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 DEV_IMAGE_NAME="faizul04/dev/capstoneimg:latest"
 PROD_IMAGE_NAME="faizul04/prod/capstoneimg:latest"
 
